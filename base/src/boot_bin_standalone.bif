@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader] sdk/fsbl/Release/fsbl.elf
+	sdk/bsp/u96_base_wrapper.bit
+	sdk/hello_world/Release/hello_world.elf
+}
