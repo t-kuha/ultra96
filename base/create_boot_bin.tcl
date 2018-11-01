@@ -38,4 +38,4 @@ configapp -app hello_world build-config release
 projects -build
 
 # Generate BOOT.bin
-exec bootgen -arch zynqmp -image ${SRC_DIR}/boot_bin_standalone.bif -w -o BOOT_standanlone.bin
+exec bootgen -arch zynqmp -image ${SRC_DIR}/boot_bin_standalone.bif -w -o BOOT_standalone.bin
