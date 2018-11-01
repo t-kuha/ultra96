@@ -27,6 +27,10 @@ createapp -name fsbl -app {Zynq MP FSBL} -hwproject bsp -proc psu_cortexa53_0 -o
 # Create application
 createapp -name hello_world -app {Hello World} -hwproject bsp -proc psu_cortexa53_0 -os standalone
 
+# Use UART1 as stdin & stdout 
+configbsp -bsp hello_world_bsp stdin  psu_uart_1
+configbsp –bsp hello_world_bsp stdout psu_uart_1
+
 # Build in release mode
 configapp -app fsbl build-config release
 configapp -app hello_world build-config release
