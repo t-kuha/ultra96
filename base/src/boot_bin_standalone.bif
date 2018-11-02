@@ -1,7 +1,8 @@
 //arch = zynq; split = false; format = BIN
 the_ROM_image:
 {
+	[fsbl_config] a53_x64
 	[bootloader] sdk/fsbl/Release/fsbl.elf
-	sdk/bsp/u96_base_wrapper.bit
-	sdk/hello_world/Release/hello_world.elf
+	[destination_device = pl] sdk/bsp/u96_base_wrapper.bit
+	[destination_cpu = a53-0] sdk/hello_world/Release/hello_world.elf
 }
