@@ -24,6 +24,9 @@ createhw -name bsp -hwspec ${XSDK_DIR}/${PRJ_NAME}_wrapper.hdf
 # Create FSBL
 createapp -name fsbl -app {Zynq MP FSBL} -hwproject bsp -proc psu_cortexa53_0 -os standalone
 
+# Create PMU FW
+createapp -name pmufw -app {ZynqMP PMU Firmware} -hwproject bsp -proc psu_pmu_0 -os standalone
+
 # Create application
 createapp -name hello_world -app {Hello World} -hwproject bsp -proc psu_cortexa53_0 -os standalone
 
@@ -33,13 +36,20 @@ configbsp -bsp fsbl_bsp stdout "psu_uart_1"
 updatemss -mss ${XSDK_DIR}/fsbl_bsp/system.mss
 regenbsp -bsp fsbl_bsp
 
+configbsp -bsp pmufw_bsp stdin  "psu_uart_1"
+configbsp -bsp pmufw_bsp stdout "psu_uart_1"
+updatemss -mss ${XSDK_DIR}/pmufw_bsp/system.mss
+regenbsp -bsp pmufw_bsp
+
 configbsp -bsp hello_world_bsp stdin  "psu_uart_1"
 configbsp -bsp hello_world_bsp stdout "psu_uart_1"
 updatemss -mss ${XSDK_DIR}/hello_world_bsp/system.mss
 regenbsp -bsp hello_world_bsp
 
+
 # Build in release mode
 configapp -app fsbl build-config release
+configapp -app pmufw build-config release
 configapp -app hello_world build-config release
 
 projects -build
