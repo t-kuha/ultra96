@@ -5,5 +5,8 @@
 **vivado
 **sdk
 
+doc
+**BOOT_BIN
+
 **.Xil
 BOOT*.BIN
