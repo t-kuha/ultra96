@@ -5,5 +5,5 @@ the_ROM_image:
 	[bootloader] sdk/fsbl/Release/fsbl.elf
 	[pmufw_image] sdk/pmufw/Release/pmufw.elf
 	[destination_device = pl] sdk/bsp/u96_base_wrapper.bit
-	[destination_cpu = a53-0] sdk/hello_world/Release/hello_world.elf
+	[destination_cpu = a53-0] sdk/led_blink/Release/led_blink.elf
 }
