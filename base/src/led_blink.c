@@ -52,10 +52,10 @@
 #include "xgpiops.h"
 #include "sleep.h"
 
-#define mio_led0 20
-#define mio_led1 19
-#define mio_led2 18
-#define mio_led3 17
+#define MIO_LED0 20
+#define MIO_LED1 19
+#define MIO_LED2 18
+#define MIO_LED3 17
 
 
 int main()
@@ -64,31 +64,31 @@ int main()
 
     print("..... LED Blink .....\n\r");
 
-    XGpioPs Gpio;
-    XGpioPs_Config *GPIOConfigPtr;
+    XGpioPs gpio;
+    XGpioPs_Config *gpio_config;
 
-    GPIOConfigPtr = XGpioPs_LookupConfig(XPAR_XGPIOPS_0_DEVICE_ID);
+    gpio_config = XGpioPs_LookupConfig(XPAR_XGPIOPS_0_DEVICE_ID);
 
-    int Status = XGpioPs_CfgInitialize(&Gpio, GPIOConfigPtr, GPIOConfigPtr ->BaseAddr);
+    int Status = XGpioPs_CfgInitialize(&gpio, gpio_config, gpio_config->BaseAddr);
     if (Status != XST_SUCCESS) {
     	return XST_FAILURE;
     }
 
-    XGpioPs_SetDirectionPin(&Gpio, mio_led0, 1);
-    XGpioPs_SetDirectionPin(&Gpio, mio_led1, 1);
-    XGpioPs_SetDirectionPin(&Gpio, mio_led2, 1);
-    XGpioPs_SetDirectionPin(&Gpio, mio_led3, 1);
-    XGpioPs_SetOutputEnablePin(&Gpio, mio_led0, 1);
-    XGpioPs_SetOutputEnablePin(&Gpio, mio_led1, 1);
-    XGpioPs_SetOutputEnablePin(&Gpio, mio_led2, 1);
-    XGpioPs_SetOutputEnablePin(&Gpio, mio_led3, 1);
+    XGpioPs_SetDirectionPin(&gpio, MIO_LED0, 1);
+    XGpioPs_SetDirectionPin(&gpio, MIO_LED1, 1);
+    XGpioPs_SetDirectionPin(&gpio, MIO_LED2, 1);
+    XGpioPs_SetDirectionPin(&gpio, MIO_LED3, 1);
+    XGpioPs_SetOutputEnablePin(&gpio, MIO_LED0, 1);
+    XGpioPs_SetOutputEnablePin(&gpio, MIO_LED1, 1);
+    XGpioPs_SetOutputEnablePin(&gpio, MIO_LED2, 1);
+    XGpioPs_SetOutputEnablePin(&gpio, MIO_LED3, 1);
 
     int cnt = 0;
     while(1){
-		XGpioPs_WritePin(&Gpio, mio_led0, ( (cnt >> 0) & 0x01));
-		XGpioPs_WritePin(&Gpio, mio_led1, ( (cnt >> 1) & 0x01));
-		XGpioPs_WritePin(&Gpio, mio_led2, ( (cnt >> 2) & 0x01));
-		XGpioPs_WritePin(&Gpio, mio_led3, ( (cnt >> 3) & 0x01));
+		XGpioPs_WritePin(&gpio, MIO_LED0, ( (cnt >> 0) & 0x01));
+		XGpioPs_WritePin(&gpio, MIO_LED1, ( (cnt >> 1) & 0x01));
+		XGpioPs_WritePin(&gpio, MIO_LED2, ( (cnt >> 2) & 0x01));
+		XGpioPs_WritePin(&gpio, MIO_LED3, ( (cnt >> 3) & 0x01));
 		usleep(200000);
 
 		cnt++;
