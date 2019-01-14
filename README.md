@@ -1,8 +1,19 @@
 # ultra96
 
   - Ultra96 board projects
-  
-#### base
+
+## Prerequisite
+
+- Get board file for Ultra96 from AVNet's github
+
+```bash
+$ git clone https://github.com/Avnet/bdf.git
+$ git checkout eba2fd59c2f3ed3dd06b43d72e7620dc069cbd23
+```
+
+***
+
+## base
 
   - Basic project
   
@@ -23,10 +34,9 @@
 
   - Copy BOOT_standalone.BIN to SD Card and rename it to BOOT.BIN
 
-
 ***
 
-#### Reference
+## Reference
 
 - http://zedboard.org/product/ultra96
 
