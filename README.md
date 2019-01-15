@@ -1,43 +1,17 @@
 # ultra96
 
-  - Ultra96 board projects
-
-## Prerequisite
-
-- Get board file for Ultra96 from AVNet's github
-
-```bash
-$ git clone https://github.com/Avnet/bdf.git
-$ git checkout eba2fd59c2f3ed3dd06b43d72e7620dc069cbd23
-```
-
-***
-
-## base
-
-  - Basic project
+- Projects for Ultra96 board
   
-    - Create baremetal application (Blinking of PS LED)
-    
-  - How to build:
+## Contents of this repo
 
-  ```bash
-  # Go into the source directory
-  $ cd base
+- base: Basic baremetal application project
 
-  # HW- Launch Vivado shell
-  $ vivado -mode batch -source create_vivado_project.tcl
-
-  # SW - Launch xsct
-  xsct% source create_boot_bin.tcl
-  ```
-
-  - Copy BOOT_standalone.BIN to SD Card and rename it to BOOT.BIN
+- simple: Simple SDSoC platform
 
 ***
 
 ## Reference
 
-- http://zedboard.org/product/ultra96
+- [http://zedboard.org/product/ultra96](http://zedboard.org/product/ultra96)
 
-- https://github.com/ATaylorCEngFIET/Hello_Ultra96
+- [https://github.com/ATaylorCEngFIET/Hello_Ultra96](https://github.com/ATaylorCEngFIET/Hello_Ultra96)
