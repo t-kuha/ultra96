@@ -2,9 +2,14 @@
 
 - Simple SDSoC platform
 
-- How to create the platform
+***
+
+## How to create the platform
+
+- Generate HW
 
 ```bash
-# Generate HW
-
+$ vivado -mode batch -source src/bd.tcl
 ```
+
+- Build PetaLinux project
