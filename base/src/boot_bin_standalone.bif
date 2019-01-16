@@ -1,8 +1,7 @@
 //arch = zynq; split = false; format = BIN
 the_ROM_image:
 {
-	[fsbl_config] a53_x64
-	[bootloader] sdk/fsbl/Release/fsbl.elf
+	[bootloader, destination_cpu = a53-0] sdk/fsbl/Release/fsbl.elf
 	[pmufw_image] sdk/pmufw/Release/pmufw.elf
 	[destination_device = pl] sdk/bsp/u96_base_wrapper.bit
 	[destination_cpu = a53-0] sdk/led_blink/Release/led_blink.elf
