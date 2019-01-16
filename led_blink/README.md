@@ -1,4 +1,4 @@
-# base
+# led_blink
 
 - Basic baremetal application project (Blinking of PS LED)
 
