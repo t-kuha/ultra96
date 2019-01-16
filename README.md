@@ -4,7 +4,7 @@
   
 ## Contents of this repo
 
-- base: Basic baremetal application project
+- led_blink: Basic baremetal application project (Blinks PS LED)
 
 - simple: Simple SDSoC platform
 
