@@ -6,19 +6,19 @@
 
 ## How to create the platform
 
-- Generate HW
+### Generate HW
 
 ```bash
 $ vivado -mode batch -source src/bd.tcl
 ```
 
-- Build PetaLinux project
+### Build PetaLinux project
 
 ```bash
 # Create project
 $ cd petalinux
 $ petalinux-create -t project -n u96_base --template zynqMP
-$ $ petalinux-config -p u96_base --get-hw-description=.
+$ petalinux-config -p u96_base --get-hw-description=.
 
 # Kernel config
 $ petalinux-config -p u96_base -c kernel
@@ -39,3 +39,57 @@ $ nano u96_base/project-spec/meta-user/recipes-apps/sdslib/sdslib.bb
 # Build
 $ petalinux-build -p u96_base
 ```
+
+### Create initial SDSoC platform (without pre-built HW)
+
+```bash
+# Create directory for platform components
+$ mkdir pfm_files
+$ mkdir pfm_files/boot pfm_files/image
+
+# Copy necessary output products
+$ cp petalinux/u96_base/images/linux/u-boot.elf      pfm_files/boot/u-boot.elf
+$ cp petalinux/u96_base/images/linux/zynqmp_fsbl.elf pfm_files/boot/fsbl.elf
+$ cp petalinux/u96_base/images/linux/bl31.elf        pfm_files/boot/bl31.elf
+$ cp petalinux/u96_base/images/linux/pmufw.elf       pfm_files/boot/pmufw.elf
+$ cp petalinux/u96_base/images/linux/image.ub        pfm_files/image/image.ub
+
+# Make sure to use xsct in SDx (not SDK)
+$ xsct create_sdsoc_pfm.tcl
+```
+
+### Build pre-built HW
+
+- Build _hello_world_
+
+```bash
+$ mkdir _prj_init
+$ cd _prj_init
+$ sdscc ../src/hello_world.c -c -o hello_world.o -sds-pf ../platform/u96_base/export/u96_base -sds-sys-config linux -target-os linux
+$ sdscc hello_world.o -o hello_world.elf -sds-pf ../platform/u96_base/export/u96_base -sds-sys-config linux -target-os linux
+```
+
+- Copy prebuilt data
+
+```bash
+$ mkdir pfm_files/prebuilt
+$ cp _prj_init/_sds/p0/vpl/system.bit pfm_files/prebuilt/bitstream.bit
+$ cp _prj_init/_sds/p0/vpl/system.hdf pfm_files/prebuilt
+$ cp _prj_init/_sds/.llvm/partitions.xml pfm_files/prebuilt
+$ cp _prj_init/_sds/.llvm/apsys_0.xml pfm_files/prebuilt
+$ cp _prj_init/_sds/swstubs/portinfo.c pfm_files/prebuilt
+$ cp _prj_init/_sds/swstubs/portinfo.h pfm_files/prebuilt
+```
+
+### Create final platform (with pre-built HW)
+
+```bash
+$ mkdir _prj_final
+$ cd _prj_final
+```
+
+***
+
+### Tips
+
+- Console setting must be changed from default (ps_uart_0) to ps_uart_1. Use petalinux-config command.
