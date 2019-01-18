@@ -96,4 +96,6 @@ $ xsct create_sdsoc_pfm.tcl
 
 ### Tips
 
-- Console setting must be changed from default (ps_uart_0) to ps_uart_1. Use petalinux-config command.
+- Console setting must be changed from default (ps_uart_0) to ps_uart_1. To do that, use petalinux-config command.
+
+- To use USB ports, ULPI option in Linux Kernel config must be enabled.
