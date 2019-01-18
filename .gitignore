@@ -1,13 +1,14 @@
 **.jou
 **.log
 **.lnk
+**.url
 
 **vivado
 **sdk
 _*
 
 doc
-**BOOT_BIN
+**boot_bin
 
 **.Xil
 BOOT*.BIN
