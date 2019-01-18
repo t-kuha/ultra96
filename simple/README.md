@@ -42,15 +42,6 @@ $ petalinux-build -p u96_base
 
 ***
 
-### Build hello_world standalone SW
-
-```bash
-
-
-```
-
-***
-
 ### Create initial SDSoC platform (without pre-built HW)
 
 ```bash
@@ -98,8 +89,7 @@ $ cp _prj_init/_sds/swstubs/portinfo.h   pfm_files/prebuilt
 ### Create final platform (with pre-built HW)
 
 ```bash
-$ mkdir _prj_final
-$ cd _prj_final
+$ xsct create_sdsoc_pfm.tcl
 ```
 
 ***
