@@ -40,6 +40,17 @@ $ nano u96_base/project-spec/meta-user/recipes-apps/sdslib/sdslib.bb
 $ petalinux-build -p u96_base
 ```
 
+***
+
+### Build hello_world standalone SW
+
+```bash
+
+
+```
+
+***
+
 ### Create initial SDSoC platform (without pre-built HW)
 
 ```bash
@@ -73,12 +84,15 @@ $ sdscc hello_world.o -o hello_world.elf -sds-pf ../platform/u96_base/export/u96
 
 ```bash
 $ mkdir pfm_files/prebuilt
-$ cp _prj_init/_sds/p0/vpl/system.bit pfm_files/prebuilt/bitstream.bit
-$ cp _prj_init/_sds/p0/vpl/system.hdf pfm_files/prebuilt
+
+# system.bit file should be renamed to bitstream.bit
+$ cp _prj_init/_sds/p0/vpl/system.bit    pfm_files/prebuilt/bitstream.bit
+# system.hdf file should be renamed to <platform>.hdf
+$ cp _prj_init/_sds/p0/vpl/system.hdf    pfm_files/prebuilt/u96_base.hdf
 $ cp _prj_init/_sds/.llvm/partitions.xml pfm_files/prebuilt
-$ cp _prj_init/_sds/.llvm/apsys_0.xml pfm_files/prebuilt
-$ cp _prj_init/_sds/swstubs/portinfo.c pfm_files/prebuilt
-$ cp _prj_init/_sds/swstubs/portinfo.h pfm_files/prebuilt
+$ cp _prj_init/_sds/.llvm/apsys_0.xml    pfm_files/prebuilt
+$ cp _prj_init/_sds/swstubs/portinfo.c   pfm_files/prebuilt
+$ cp _prj_init/_sds/swstubs/portinfo.h   pfm_files/prebuilt
 ```
 
 ### Create final platform (with pre-built HW)
