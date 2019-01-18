@@ -40,13 +40,10 @@ $ nano u96_base/project-spec/meta-user/recipes-apps/sdslib/sdslib.bb
 $ petalinux-build -p u96_base
 ```
 
-***
-
 ### Create initial SDSoC platform (without pre-built HW)
 
 ```bash
 # Create directory for platform components
-$ mkdir pfm_files
 $ mkdir pfm_files/boot pfm_files/image
 
 # Copy necessary output products
@@ -94,7 +91,7 @@ $ xsct create_sdsoc_pfm.tcl
 
 ***
 
-### Tips
+## Tips
 
 - Console setting must be changed from default (ps_uart_0) to ps_uart_1. To do that, use petalinux-config command.
 
