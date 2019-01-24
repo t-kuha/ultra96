@@ -1,5 +1,5 @@
 # Setting
-set PRJ_DIR     vivado
+set PRJ_DIR     _vivado
 set PRJ_NAME    u96_base
 set BD_NAME     ${PRJ_NAME}
 set SRC_DIR     src
