@@ -11,7 +11,6 @@
 - Generate bitstream
 
 ```bash
-$ cd hw
 # This will also create HW definition file (_system.hdf)
 $ vivado -mode batch -source create_vivado_project.tcl
 ```
@@ -20,7 +19,7 @@ $ vivado -mode batch -source create_vivado_project.tcl
 
 ## Create PetaLinux project
 
-- Create project
+- Create project (usually can be skipped to "petalinux-build")
 
 ```bash
 $ export PRJ_NAME=prj
@@ -38,6 +37,9 @@ $ petalinux-config -p ${PRJ_NAME} -c rootfs
 
 # Build
 $ petalinux-build -p ${PRJ_NAME}
+
+# Generate SDK (optional)
+$ petalinux-build --sdk -p ${PRJ_NAME}
 ```
 
 ***
@@ -46,6 +48,14 @@ $ petalinux-build -p ${PRJ_NAME}
 
 ```bash
 $ bootgen -arch zynqmp -image src/boot_bin_linux.bif -w -o BOOT.bin
+# or ...
+$ petalinux-package -p ${PRJ_NAME} --boot --format BIN \
+> --fsbl ${PRJ_NAME}/images/linux/zynqmp_fsbl.elf \
+> --u-boot ${PRJ_NAME}/images/linux/u-boot.elf \
+> --pmufw ${PRJ_NAME}/images/linux/pmufw.elf \
+> --fpga _vivado/hw.runs/impl_1/hw_wrapper.bit \
+> --atf ${PRJ_NAME}/images/linux/bl31.elf
+# BOOT.BIN is in ${PRJ_NAME}/images/linux/
 ```
 
 ***
