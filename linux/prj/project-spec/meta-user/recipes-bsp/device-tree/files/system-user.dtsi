@@ -4,6 +4,16 @@
 		compatible = "xlnx,xlnk-1.0";
 	};
 
+	aliases {
+		i2c0 = &i2c1;
+		serial0 = &uart1;
+		serial1 = &axi_uart16550_1;
+		serial2 = &uart0;
+		serial3 = &axi_uart16550_0;
+		spi0 = &spi0;
+		spi1 = &spi1;
+	};
+
 	gpio-keys {
 		compatible = "gpio-keys";
 		#address-cells = <1>;
