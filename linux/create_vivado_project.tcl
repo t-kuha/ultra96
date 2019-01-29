@@ -46,7 +46,7 @@ report_utilization -name utilization_1
 report_clocks
 
 # Export .hdf file
-write_hwdef -force -file system.hdf
+write_hwdef -force -file _system.hdf
 
 # Finish - close project
 close_project
