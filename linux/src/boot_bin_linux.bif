@@ -1,0 +1,9 @@
+// BIF file for Linux image
+the_ROM_image:
+{
+  [bootloader, destination_cpu = a53-0] prj/images/linux/zynqmp_fsbl.elf
+  [pmufw_image] prj/images/linux/pmufw.elf
+  [destination_device=pl] _vivado/hw.runs/impl_1/hw_wrapper.bit
+  [destination_cpu=a53-0, exception_level=el-3, trustzone] prj/images/linux/bl31.elf
+  [destination_cpu=a53-0, exception_level=el-2] prj/images/linux/u-boot.elf
+}
