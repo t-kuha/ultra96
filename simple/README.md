@@ -96,3 +96,7 @@ $ xsct create_sdsoc_pfm.tcl
 - Console setting must be changed from default (ps_uart_0) to ps_uart_1. To do that, use petalinux-config command.
 
 - To use USB ports, ULPI option in Linux Kernel config must be enabled.
+
+- Where to get the firmware of WL1831:
+  - git://git.ti.com/wilink8-wlan/wl18xx_fw.git (Wi-Fi)
+  - git://git.ti.com/wilink8-bt/ti-bt-firmware.git (Bluetooth)
