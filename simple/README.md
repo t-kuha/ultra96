@@ -9,7 +9,7 @@
 ### Generate HW
 
 ```bash
-$ vivado -mode batch -source src/bd.tcl
+$ vivado -mode batch -source create_vivado_project.tcl
 ```
 
 ### Build PetaLinux project
@@ -64,8 +64,8 @@ $ xsct create_sdsoc_pfm.tcl
 ```bash
 $ mkdir _prj_init
 $ cd _prj_init
-$ sdscc ../src/hello_world.c -c -o hello_world.o -sds-pf ../platform/u96_base/export/u96_base -sds-sys-config linux -target-os linux
-$ sdscc hello_world.o -o hello_world.elf -sds-pf ../platform/u96_base/export/u96_base -sds-sys-config linux -target-os linux
+$ sdscc ../src/hello_world.c -c -o hello_world.o -sds-pf ../platform_init/u96_base/export/u96_base -sds-sys-config linux -target-os linux
+$ sdscc hello_world.o -o hello_world.elf -sds-pf ../platform_init/u96_base/export/u96_base -sds-sys-config linux -target-os linux
 ```
 
 - Copy prebuilt data
@@ -87,6 +87,16 @@ $ cp _prj_init/_sds/swstubs/portinfo.h   pfm_files/prebuilt
 
 ```bash
 $ xsct create_sdsoc_pfm.tcl
+```
+
+***
+
+### Confromance Test
+
+- Build: 
+- 
+```bash
+$ make OS=LINUX PLATFORM=platform_final/u96_base/export/u96_base PLATFORM_TYPE=MPSOC
 ```
 
 ***
