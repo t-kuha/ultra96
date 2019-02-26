@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rm -rf vivado
+rm -rf _vivado
 rm -rf .Xil
 rm -rf platform
 
