@@ -111,3 +111,5 @@ $ make OS=LINUX PLATFORM=platform_final/u96_base/export/u96_base PLATFORM_TYPE=M
 - Where to get the firmware of WL1831:
   - git://git.ti.com/wilink8-wlan/wl18xx_fw.git (Wi-Fi)
   - git://git.ti.com/wilink8-bt/ti-bt-firmware.git (Bluetooth)
+
+- HPC port support: [https://www.xilinx.com/html_docs/xilinx2018_3/sdsoc_doc/hbw1532064985184.html](https://www.xilinx.com/html_docs/xilinx2018_3/sdsoc_doc/hbw1532064985184.html)
