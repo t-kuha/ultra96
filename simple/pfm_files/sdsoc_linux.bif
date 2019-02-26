@@ -6,4 +6,5 @@ the_ROM_image:
   [destination_device=pl] <bitstream>
   [destination_cpu=a53-0, exception_level=el-3, trustzone] <bl31.elf>
   [destination_cpu=a53-0, exception_level=el-2] <u-boot.elf>
+  [init] <regs.init>
 }

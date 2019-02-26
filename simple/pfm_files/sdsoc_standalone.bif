@@ -5,4 +5,5 @@ the_ROM_image:
 	[pmufw_image] <pmufw.elf>
 	[destination_device = pl] <bitstream>
 	[destination_cpu = a53-0] <elf>
+	[init] <regs.init>
 }

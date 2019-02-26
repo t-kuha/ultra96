@@ -51,6 +51,7 @@ $ cp petalinux/u96_base/images/linux/u-boot.elf      pfm_files/boot/u-boot.elf
 $ cp petalinux/u96_base/images/linux/zynqmp_fsbl.elf pfm_files/boot/fsbl.elf
 $ cp petalinux/u96_base/images/linux/bl31.elf        pfm_files/boot/bl31.elf
 $ cp petalinux/u96_base/images/linux/pmufw.elf       pfm_files/boot/pmufw.elf
+$ cp pfm_files/regs.init                             pfm_files/boot/regs.init
 $ cp petalinux/u96_base/images/linux/image.ub        pfm_files/image/image.ub
 
 # Make sure to use xsct in SDx (not SDK)
