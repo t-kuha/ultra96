@@ -3869,7 +3869,7 @@ CONFIG_hellopm=y
 #
 # libdrm 
 #
-# CONFIG_libdrm is not set
+CONFIG_libdrm=y
 # CONFIG_libdrm-tests is not set
 # CONFIG_libdrm-drivers is not set
 # CONFIG_libdrm-amdgpu is not set
