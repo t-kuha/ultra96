@@ -95,9 +95,58 @@ $ xsct create_sdsoc_pfm.tcl
 ### Confromance Test
 
 - Build: 
-- 
+
 ```bash
 $ make OS=LINUX PLATFORM=platform_final/u96_base/export/u96_base PLATFORM_TYPE=MPSOC
+```
+
+- Run:
+
+```bash
+root@ultra96:~# /media/card/ConformanceTest.elf 
+Starting allocation tests from 65536 to 67108864 with increment 524288
+done
+Starting datamover tests....
+Running test <axi_dma_simple, HPC, sds_alloc>
+    using Index=1/114687, data size=64-7340032, Allocation=SDS Alloc, Unvalidated
+ Complete
+Running test <zero_copy, HPC, sds_alloc>
+    using Index=1/262143, data size=64-16777216, Allocation=SDS Alloc, Unvalidated
+ Complete
+Running test <axi_dma_sg, HPC, malloc>
+    using Index=1/262143, data size=64-16777216, Allocation=User new, Unvalidated
+ Complete
+Running test <axi_dma_sg, HPC, sds_alloc>
+    using Index=1/262143, data size=64-16777216, Allocation=SDS Alloc, Unvalidated
+ Complete
+Running test <axi_dma_simple, HP, sds_alloc>
+    using Index=1/114687, data size=64-7340032, Allocation=SDS Alloc, Unvalidated
+ Complete
+Running test <axi_dma_simple, HP, sds_alloc_noncacheable>
+    using Index=1/114687, data size=64-7340032, Allocation=SDS Alloc (non-cacheable), Unvalidated
+ Complete
+Running test <zero_copy, HP, sds_alloc>
+    using Index=1/262143, data size=64-16777216, Allocation=SDS Alloc, Unvalidated
+ Complete
+Running test <zero_copy, HP, sds_alloc_noncacheable>
+    using Index=1/262143, data size=64-16777216, Allocation=SDS Alloc (non-cacheable), Unvalidated
+ Complete
+Running test <axi_dma_sg, HP, malloc>
+    using Index=1/262143, data size=64-16777216, Allocation=User new, Unvalidated
+ Complete
+Running test <axi_dma_sg, HP, sds_alloc>
+    using Index=1/262143, data size=64-16777216, Allocation=SDS Alloc, Unvalidated
+ Complete
+Running test <axi_dma_sg, HP, sds_alloc_noncacheable>
+    using Index=1/262143, data size=64-16777216, Allocation=SDS Alloc (non-cacheable), Unvalidated
+ Complete
+Running test <axi_fifo, NONE, NONE>
+    using Index=1/31, data size=64-2048, Allocation=User new, Unvalidated
+ Complete
+Datamover Testing complete.
+Testing clocks
+Clock tests complete.
+Test passed.
 ```
 
 ***
