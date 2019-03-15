@@ -6,7 +6,7 @@
 
 ***
 
-## HW acceleration
+## Build - w/ HW acceleration
 
 - Modify _Makefile_ (line 80)
 
@@ -23,19 +23,43 @@
   CFLAGS   := -Wall -O3 -c ${IDIRS} -D__SDSOC=1 -Wno-unused-label
   ```
 
+- Modify _design/pool/src/pooling_layer_dp_2xio_top.cpp_ (lines 24 & 32)
+  - Comment out lines starting with "FILE *"
+
+```C++
+// FILE *iFp = NULL, *oFp = NULL, *rFp = NULL, *mpFp = NULL;
+...
+// FILE * pFp = NULL, *wFp = NULL, *apFp = NULL;
+``
+
+- Modify _design/conv/scripts/mcp_const.xdc_
+  - Replace "zcu102" with your block design name
+
 - Build
 
-```bash
-$ make \
-CLOCK_ID=1 \
-DM_CLOCK_ID=1 \
-DECONV_ENABLE=0 \
-PLATFORM=/path/to/platform
-```
+  ```bash
+  $ make \
+  CLOCK_ID=1 \
+  DM_CLOCK_ID=1 \
+  DECONV_ENABLE=0 \
+  PLATFORM=/path/to/platform
+  ```
+
+  - On Windows
+
+  ```msdos
+  :: Use forward slash ("/") instead of backslash ("\") when specifying "CONV_SCRIPTS_PATH"
+  > make \
+  CLOCK_ID=1 \
+  DM_CLOCK_ID=1 \
+  DECONV_ENABLE=0 \
+  PLATFORM=/path/to/platform
+  CONV_SCRIPTS_PATH=<path to chaidnn_source>/design/conv/scripts
+  ```
 
 ***
 
-## SW only (No acceleration)
+## Build - SW only (No acceleration)
 
 - Modify Makefile
 
@@ -71,18 +95,20 @@ PLATFORM=/path/to/platform
 
   - See the previous section
 
-- Run
+***
 
-  - It takes >6Hr (!) to run AlexNet example
+## Run
 
-  ```bash
-  root@ultra96:~/chaidnn# ./alexnet.elf Xilinx 8 images/camel.jpg images/fish.jpg
-  [INFOx] Network Path : models/AlexNet/8Bit
+- ex. Alexnet
 
-  ...
+```bash
+root@ultra96:~/chaidnn# ./alexnet.elf Xilinx 8 images/camel.jpg images/fish.jpg
+[INFOx] Network Path : models/AlexNet/8Bit
 
-  [PERFM] Performance with Batching : 0.008932 Images/second
-  [INFOx] Unapack output data
+...
 
-  ...
-  ```
+[PERFM] Performance with Batching : 0.008932 Images/second
+[INFOx] Unapack output data
+
+...
+```
