@@ -30,7 +30,7 @@
 // FILE *iFp = NULL, *oFp = NULL, *rFp = NULL, *mpFp = NULL;
 ...
 // FILE * pFp = NULL, *wFp = NULL, *apFp = NULL;
-``
+```
 
 - Modify _design/conv/scripts/mcp_const.xdc_
   - Replace "zcu102" with your block design name
