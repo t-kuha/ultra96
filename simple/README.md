@@ -17,24 +17,7 @@ $ vivado -mode batch -source create_vivado_project.tcl
 ```bash
 # Create project
 $ cd petalinux
-$ petalinux-create -t project -n u96_base --template zynqMP
 $ petalinux-config -p u96_base --get-hw-description=.
-
-# Kernel config
-$ petalinux-config -p u96_base -c kernel
-
-# u-boot config
-$ petalinux-config -p u96_base -c u-boot
-
-# rootfs config
-$ petalinux-config -p u96_base -c rootfs
-
-# Add libsdslib*.so
-$ petalinux-create -p u96_base -t apps --template install --name sdslib --enable
-$ rm u96_base/project-spec/meta-user/recipes-apps/sdslib/files/sdslib
-$ cp -R ${XILINX_SDX}/target/aarch64-linux/lib/libsds_lib*.so u96_base/project-spec/meta-user/recipes-apps/sdslib/files
-# Edit .bb file
-$ nano u96_base/project-spec/meta-user/recipes-apps/sdslib/sdslib.bb
 
 # Build
 $ petalinux-build -p u96_base
@@ -43,18 +26,9 @@ $ petalinux-build -p u96_base
 ### Create initial SDSoC platform (without pre-built HW)
 
 ```bash
-# Create directory for platform components
-$ mkdir pfm_files/boot pfm_files/image
+$ ./copy_pfm_files.sh
 
-# Copy necessary output products
-$ cp petalinux/u96_base/images/linux/u-boot.elf      pfm_files/boot/u-boot.elf
-$ cp petalinux/u96_base/images/linux/zynqmp_fsbl.elf pfm_files/boot/fsbl.elf
-$ cp petalinux/u96_base/images/linux/bl31.elf        pfm_files/boot/bl31.elf
-$ cp petalinux/u96_base/images/linux/pmufw.elf       pfm_files/boot/pmufw.elf
-$ cp pfm_files/regs.init                             pfm_files/boot/regs.init
-$ cp petalinux/u96_base/images/linux/image.ub        pfm_files/image/image.ub
-
-# Make sure to use xsct in SDx (not SDK)
+# Make sure to use xsct in SDx (not the one in SDK)
 $ xsct create_sdsoc_pfm.tcl
 ```
 
@@ -72,16 +46,7 @@ $ sdscc hello_world.o -o hello_world.elf -sds-pf ../platform_init/u96_base/expor
 - Copy prebuilt data
 
 ```bash
-$ mkdir pfm_files/prebuilt
-
-# system.bit file should be renamed to bitstream.bit
-$ cp _prj_init/_sds/p0/vpl/system.bit    pfm_files/prebuilt/bitstream.bit
-# system.hdf file should be renamed to <platform>.hdf
-$ cp _prj_init/_sds/p0/vpl/system.hdf    pfm_files/prebuilt/u96_base.hdf
-$ cp _prj_init/_sds/.llvm/partitions.xml pfm_files/prebuilt
-$ cp _prj_init/_sds/.llvm/apsys_0.xml    pfm_files/prebuilt
-$ cp _prj_init/_sds/swstubs/portinfo.c   pfm_files/prebuilt
-$ cp _prj_init/_sds/swstubs/portinfo.h   pfm_files/prebuilt
+$ ./copy_prebuilt_files.sh
 ```
 
 ### Create final platform (with pre-built HW)
@@ -94,7 +59,7 @@ $ xsct create_sdsoc_pfm.tcl
 
 ### Confromance Test
 
-- Build: 
+- Build:
 
 ```bash
 $ make OS=LINUX PLATFORM=platform_final/u96_base/export/u96_base PLATFORM_TYPE=MPSOC
@@ -147,6 +112,38 @@ Datamover Testing complete.
 Testing clocks
 Clock tests complete.
 Test passed.
+```
+
+***
+
+## How to create PetaLinux project from scratch
+
+```bash
+export PRJ=u96_base
+# Create project
+$ cd petalinux
+$ petalinux-create -t project -n ${PRJ} --template zynqMP
+$ petalinux-config -p ${PRJ} --get-hw-description=.
+
+# Kernel config
+$ petalinux-config -p ${PRJ} -c kernel
+
+# u-boot config
+$ petalinux-config -p ${PRJ} -c u-boot
+
+# rootfs config
+$ petalinux-config -p ${PRJ} -c rootfs
+
+# Add libsdslib*.so
+$ petalinux-create -p ${PRJ} -t apps --template install --name sdslib --enable
+$ rm ${PRJ}/project-spec/meta-user/recipes-apps/sdslib/files/sdslib
+$ cp -R ${XILINX_SDX}/target/aarch64-linux/lib/libsds_lib*.so \
+${PRJ}/project-spec/meta-user/recipes-apps/sdslib/files
+# Edit .bb file
+$ nano ${PRJ}/project-spec/meta-user/recipes-apps/sdslib/sdslib.bb
+
+# Build
+$ petalinux-build -p ${PRJ}
 ```
 
 ***
