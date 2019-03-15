@@ -893,12 +893,13 @@ proc create_root_design { parentCell } {
 
   # Create PFM attributes
   set_property PFM_NAME {em.avnet.com:ultra96_v1:u96_base:2018.3} [get_files [current_bd_design].bd]
-  set_property PFM.CLOCK {clk_out1 {id "0" is_default "true" proc_sys_reset "/ps_rst_1"} clk_out2 {id "1" is_default "false" proc_sys_reset "/ps_rst_0"} clk_out3 {id "2" is_default "false" proc_sys_reset "/ps_rst_2"} clk_out4 {id "4" is_default "false" proc_sys_reset "/ps_rst_3"} clk_out5 {id "5" is_default "false" proc_sys_reset "/ps_rst_4"}} [get_bd_cells /clk_wiz_0]
+  set_property PFM.CLOCK {clk_out1 {id "0" is_default "true" proc_sys_reset "/ps_rst_1"} clk_out2 {id "1" is_default "false" proc_sys_reset "/ps_rst_0"} clk_out3 {id "2" is_default "false" proc_sys_reset "/ps_rst_2"} clk_out4 {id "3" is_default "false" proc_sys_reset "/ps_rst_3"} clk_out5 {id "4" is_default "false" proc_sys_reset "/ps_rst_4"}} [get_bd_cells /clk_wiz_0]
   set_property PFM.IRQ {In0 {} In1 {} In2 {} In3 {} In4 {} In5 {} In6 {} In7 {}} [get_bd_cells /xlconcat_0]
   set_property PFM.IRQ {In0 {} In1 {} In2 {} In3 {} In4 {} In5 {} In6 {} In7 {}} [get_bd_cells /xlconcat_1]
   set_property PFM.AXI_PORT {M_AXI_HPM0_FPD {memport "M_AXI_GP" sptag "" memory ""} M_AXI_HPM1_FPD {memport "M_AXI_GP" sptag "" memory ""} M_AXI_HPM0_LPD {memport "M_AXI_GP" sptag "" memory ""} S_AXI_HPC0_FPD {memport "S_AXI_HPC" sptag "" memory ""} S_AXI_HPC1_FPD {memport "S_AXI_HPC" sptag "" memory ""} S_AXI_HP0_FPD {memport "S_AXI_HP" sptag "" memory ""} S_AXI_HP1_FPD {memport "S_AXI_HP" sptag "" memory ""} S_AXI_HP2_FPD {memport "S_AXI_HP" sptag "" memory ""} S_AXI_HP3_FPD {memport "S_AXI_HP" sptag "" memory ""}} [get_bd_cells /zynq_ultra]
 
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()
@@ -910,6 +911,4 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
-
-common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 
