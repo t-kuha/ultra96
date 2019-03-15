@@ -12,8 +12,7 @@
 - Install necessary packages
 
 ```bash
-$ sudo apt-get install g++-multilib git python curl 
-re2c
+$ sudo apt-get install g++-multilib git python curl re2c
 ```
 
 - Get tools
