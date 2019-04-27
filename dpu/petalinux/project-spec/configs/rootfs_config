@@ -2166,7 +2166,7 @@ CONFIG_run-postinsts=y
 #
 # opencv 
 #
-# CONFIG_opencv is not set
+CONFIG_opencv=y
 # CONFIG_opencv-dbg is not set
 # CONFIG_opencv-apps is not set
 # CONFIG_opencv-dev is not set
@@ -2441,7 +2441,7 @@ CONFIG_udev-extraconf=y
 # gcc-runtime 
 #
 # CONFIG_libstdcPLUSPLUS-dev is not set
-# CONFIG_libstdcPLUSPLUS is not set
+CONFIG_libstdcPLUSPLUS=y
 
 #
 # gcr 
@@ -4341,7 +4341,7 @@ CONFIG_hellopm=y
 #
 # packagegroup-petalinux-v4lutils 
 #
-# CONFIG_packagegroup-petalinux-v4lutils is not set
+CONFIG_packagegroup-petalinux-v4lutils=y
 # CONFIG_packagegroup-petalinux-v4lutils-dbg is not set
 # CONFIG_packagegroup-petalinux-v4lutils-dev is not set
 
@@ -4378,8 +4378,14 @@ CONFIG_imagefeature-hwcodecs=y
 #
 # apps 
 #
+CONFIG_dnndk=y
 # CONFIG_gpio-demo is not set
 # CONFIG_peekpoke is not set
+
+#
+# modules 
+#
+CONFIG_dpu=y
 
 #
 # user packages 
