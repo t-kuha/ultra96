@@ -35,6 +35,17 @@ addtask unpack_extra after do_unpack before do_patch
 
 EXTRA_OECMAKE = "-DOPENCV_EXTRA_MODULES_PATH=${WORKDIR}/contrib/modules \
     -DWITH_1394=OFF \
+    -DWITH_TBB=OFF \
+    -DWITH_GTK=OFF \
+    -DWITH_WEBP=OFF \
+    -DBUILD_JPEG=ON \
+    -DBUILD_PNG=OFF \
+    -DBUILD_TIFF=ON \
+    -DBUILD_WEBP=OFF \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_PERF_TESTS=OFF \
+    -DWITH_TBB=OFF \
+    -DBUILD_ZLIB=ON \
     -DCMAKE_SKIP_RPATH=ON \
     -DOPENCV_ICV_PACKAGE_DOWNLOADED=${IPP_MD5} \
     -DOPENCV_ICV_PATH=${WORKDIR}/ippicv_lnx \
@@ -47,8 +58,10 @@ EXTRA_OECMAKE = "-DOPENCV_EXTRA_MODULES_PATH=${WORKDIR}/contrib/modules \
 EXTRA_OECMAKE_append_x86 = " -DX86=ON"
 
 PACKAGECONFIG ??= "python3 eigen jpeg png tiff v4l libv4l gstreamer samples tbb  gphoto2 \
-    ${@bb.utils.contains("DISTRO_FEATURES", "x11", "gtk", "", d)} \
     ${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", "commercial", "libav", "", d)}"
+
+#    ${@bb.utils.contains("DISTRO_FEATURES", "x11", "gtk", "", d)}
+
 
 PACKAGECONFIG[amdblas] = "-DWITH_OPENCLAMDBLAS=ON,-DWITH_OPENCLAMDBLAS=OFF,libclamdblas,"
 PACKAGECONFIG[amdfft] = "-DWITH_OPENCLAMDFFT=ON,-DWITH_OPENCLAMDFFT=OFF,libclamdfft,"
