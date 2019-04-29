@@ -194,8 +194,8 @@ $ cd ${OLDPWD}
 ```shell-session
 $ aarch64-linux-gnu-g++ app/face_detection.cc \
 -Wall -O3 \
--I_sysroot/usr/include \
 -c -o face_detection.o \
+-I_sysroot/usr/include \
 -I${SRC_DIR}/recipes-apps/dnndk/files
 
 $ aarch64-linux-gnu-g++ -o _sd_card/face_detection.elf face_detection.o \
