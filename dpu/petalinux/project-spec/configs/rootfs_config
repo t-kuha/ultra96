@@ -1650,7 +1650,7 @@ CONFIG_bluez5=y
 #
 # libmali-xlnx 
 #
-# CONFIG_libmali-xlnx is not set
+CONFIG_libmali-xlnx=y
 # CONFIG_libmali-xlnx-dbg is not set
 # CONFIG_libmali-xlnx-dev is not set
 
