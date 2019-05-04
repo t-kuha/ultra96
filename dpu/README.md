@@ -2,8 +2,9 @@
 
 ## Environment
 
-- Vivado / PetaLinux version: 2018.3
 - OS: Ubuntu 16.04
+- Vivado / PetaLinux version: 2018.3
+- DPU: ver. 2.08
 
 ***
 
