@@ -41,6 +41,7 @@
   $ make \
   CLOCK_ID=1 \
   DM_CLOCK_ID=1 \
+  POOL_ENABLE=0 \
   DECONV_ENABLE=0 \
   PLATFORM=/path/to/platform
   ```
@@ -49,10 +50,11 @@
 
   ```msdos
   :: Use forward slash ("/") instead of backslash ("\") when specifying "CONV_SCRIPTS_PATH"
-  > make \
-  CLOCK_ID=1 \
-  DM_CLOCK_ID=1 \
-  DECONV_ENABLE=0 \
+  > make ^
+  CLOCK_ID=1 ^
+  DM_CLOCK_ID=1 ^
+  POOL_ENABLE=0 ^
+  DECONV_ENABLE=0 ^
   PLATFORM=/path/to/platform
   CONV_SCRIPTS_PATH=<path to chaidnn_source>/design/conv/scripts
   ```
