@@ -19,7 +19,8 @@ update_ip_catalog
 update_ip_catalog -rebuild
 
 # Create block design
-source src/u96_dpu_bd.tcl
+#source src/u96_dpu_bd.tcl
+source src/bd.tcl
 
 # Set top-level source
 make_wrapper -files [get_files ${PRJ_DIR}/${PRJ_NAME}.srcs/sources_1/bd/${BD_NAME}/${BD_NAME}.bd] -top
