@@ -1,4 +1,4 @@
-# UG1335
+# UG1335 - CIFAR10 Caffe Tutorial
 
 ## Quantize trained model
 
