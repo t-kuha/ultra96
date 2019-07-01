@@ -1,4 +1,4 @@
-# UG1334
+# UG1334 - YOLOv3 Tutorial: Darknet to Caffe to Xilinx DNNDK
 
 ## Compile quantized model
 
