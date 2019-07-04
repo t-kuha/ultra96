@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 // DNNDK
 #include "n2cube.h"
@@ -47,8 +48,9 @@ int main()
     // std::cout << "Shape of " << input_node_name << ": " <<
     // 		width << " x " << height << std::endl;
 
-	// Inference
-	float mean[1] = {0.0};
+	// Pre-load images
+	std::cout << "..... Pre-loading Images ....." << std::endl;
+	std::vector<cv::Mat> img_list;
 	for (int n = 0; n < 10000; n++){
 		// File name
 		std::ostringstream oss;
@@ -69,10 +71,18 @@ int main()
 			break;
 		}
 
+		img_list.push_back(img);
+	}
+
+	// Inference
+	std::cout << "..... Start Inference ....." << std::endl;
+	float mean[1] = {0.0};
+	std::vector<int> result;
+	for (int n = 0; n < 10000; n++){
 		// Set to DPU
 #if 1
 		// Need scaling
-		ret = dpuSetInputImageWithScale(task, input_node_name, img, mean, 1.0/255.0);
+		ret = dpuSetInputImageWithScale(task, input_node_name, img_list.at(n), mean, 1.0/255.0);
 		if(ret){
 			std::cerr << "[FAIL] dpuSetInputImage()" << std::endl;
 			break;
@@ -116,8 +126,17 @@ int main()
 			}
 		}
 
-		// Show result
-		std::cout << "Classification result: " << idx << std::endl;
+		// Store result
+		result.push_back(idx);
+	}
+
+	// Show result
+	std::cout << "..... Inference Result ....." << std::endl;
+	for (unsigned int i = 0; i < result.size(); i++){
+		std::cout << result.at(i) << ", ";
+		if( (i + 1) % 20 == 0){
+			std::cout << std::endl;
+		}
 	}
 
 	// End
