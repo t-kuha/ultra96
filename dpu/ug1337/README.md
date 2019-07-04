@@ -73,7 +73,7 @@ $ dnnc \
 >    --frozen_pb=./quantize_results/deploy_model.pb \
 >    --dpu=2304FA \
 >    --cpu_arch=arm64 \
->    --output_dir=compile \
+>    --output_dir=deploy \
 >    --save_kernel \
 >    --mode normal \
 >    --net_name=mnist
