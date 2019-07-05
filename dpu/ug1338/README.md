@@ -1,5 +1,6 @@
 # UG1338
 
+- CPU only (No GPU is used)
 
 ## Evaluate frozen graph
 
@@ -116,5 +117,33 @@ output node(s)  : dense_1_MatMul(0)
 
 ## Build .elf
 
+```shell-session
+$ aarch64-linux-gnu-g++ src/main.cc \
+>   -Wall -O3 \
+>   --sysroot=/opt/petalinux/2018.2/sysroots/aarch64-xilinx-linux \
+>   -I../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/include \
+>   -L../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/lib \
+>   -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_videoio \
+>   -lpthread -ln2cube -ldputils -lhineon \
+>   deploy/dpu_cifar10.elf -o ug1338.elf
+```
+
+## Generate test images
+
+- Run the Jupyter Notebook in _jupyter-notebook_
 
 ## Run
+
+```shell-session
+root@ultra96:~# /media/ug1338.elf
+------ DPU (CIFAR-10) ------
+..... Pre-loading Images .....
+..... Start Inference .....
+..... Inference Result .....
+3, 8, 8, 0, 6, 5, 1, 6, 3, 1, 4, 9, 5, 7, 9, 8, 5, 7, 8, 6,
+7, 0, 4, 9, 4, 3, 4, 0, 9, 6, 6, 5, 4, 3, 9, 3, 7, 9, 9, 5,
+  ...
+0, 3, 4, 8, 4, 2, 6, 6, 5, 6, 2, 9, 4, 0, 1, 7, 5, 5, 7, 3,
+0, 4, 6, 1, 7, 5, 8, 0, 8, 4, 7, 0, 3, 3, 3, 5, 6, 5, 1, 7,
+-------------------------
+```

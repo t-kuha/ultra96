@@ -98,22 +98,32 @@ output node(s)  : dense_1_MatMul(0)
 ## Build .elf
 
 ```shell-session
-aarch64-linux-gnu-g++ src/main.cpp
+$ aarch64-linux-gnu-g++ src/main.cc \
+>    -Wall -O3 \
+>    --sysroot=/opt/petalinux/2018.2/sysroots/aarch64-xilinx-linux \
+>    -I../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/include \
+>    -L../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/lib \
+>    -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_videoio \
+>    -lpthread -ln2cube -ldputils -lhineon \
+>    deploy/dpu_mnist.elf -o ug1337.elf
 ```
+
+## Generate test images
+
+- Run the Jupyter Notebook in _jupyter-notebook_
 
 ## Run
 
-
--------------------
--ltbb -lgtk-3 -lglib-2.0 -ldrm -llzma -ltiff -lpng16 -lz -ljpeg -lwebp -lcairo ^
--lpango-1.0 ^
-
-aarch64-linux-gnu-g++ src/main.cpp ^
--Wall ^
--ID:\tmp\dnndk\xlnx_dnndk_v3.0_190624\xilinx_dnndk_v3.0\Ultra96\pkgs\include ^
--ID:\tmp\dnndk\v3.0\_install\include ^
--LD:\tmp\dnndk\xlnx_dnndk_v3.0_190624\xilinx_dnndk_v3.0\Ultra96\pkgs\lib ^
--LD:\tmp\dnndk\v3.0\_install\lib ^
--lopencv_highgui -lopencv_imgproc -lopencv_core -lopencv_imgcodecs -lopencv_videoio ^
--ln2cube -ldputils -lhineon ^
-compile/dpu_mnist.elf -o ug1337.elf
+```shell-session
+root@ultra96:~# /media/ug1337.elf
+------ DPU (mnist) ------
+..... Pre-loading Images .....
+..... Start Inference .....
+..... Inference Result .....
+7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 3, 4,
+9, 6, 6, 5, 4, 0, 7, 4, 0, 1, 3, 1, 3, 4, 7, 2, 7, 1, 2, 1,
+  ...
+4, 6, 0, 7, 0, 3, 6, 8, 7, 1, 5, 2, 4, 9, 4, 3, 6, 4, 1, 7,
+2, 6, 6, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6,
+-------------------------
+```
