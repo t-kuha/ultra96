@@ -55,3 +55,17 @@ DPU Target      : v1.4.0
 DPU Freqency    : 260 MHz
 DPU Features    : Avg-Pooling, LeakyReLU/ReLU6, Depthwise Conv
 ```
+
+## Python (on the host)
+
+- Make sure you use Python __3.6__
+
+```shell-session
+$ wget https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh
+$ chmod +x Miniconda3-4.5.4-Linux-x86_64.sh
+$ ./Miniconda3-4.5.4-Linux-x86_64.sh
+
+$ pip install progressbar opencv-python
+
+$ pip install xlnx_dnndk_v3.0_190531/xilinx_dnndk_v3.0/host_x86/decent-tf/ubuntu16.04/tensorflow-1.9.0-cp36-cp36m-linux_x86_64.whl 
+```
