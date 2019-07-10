@@ -6,11 +6,11 @@
 $ mkdir model
 
 $ dnnc \
---prototxt=deploy/deploy.prototxt \
---caffemodel=deploy/deploy.caffemodel \
---dpu=2304FA \
---cpu_arch=arm64 --output_dir=$(pwd)/model \
---net_name=yolo --mode=normal --save_kernel
+>   --prototxt=deploy/deploy.prototxt \
+>   --caffemodel=deploy/deploy.caffemodel \
+>   --dpu=2304FA \
+>   --cpu_arch=arm64 --output_dir=$(pwd)/model \
+>   --net_name=yolo --mode=normal --save_kernel
 ```
 
 - Result:
@@ -37,12 +37,12 @@ output node(s)  : layer81_conv(0) layer93_conv(0) layer105_conv(0)
 
 ```shell-session
 $ aarch64-linux-gnu-g++ src/main.cc \
---sysroot=/opt/petalinux/2018.2/sysroots/aarch64-xilinx-linux \
--I../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/include \
--L../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/lib \
--lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_videoio \
--lpthread -ln2cube -ldputils -lhineon \
-model/dpu_yolo.elf -o yolo_v3.elf 
+>   --sysroot=/opt/petalinux/2018.2/sysroots/aarch64-xilinx-linux \
+>   -I../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/include \
+>   -L../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/lib \
+>   -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -lopencv_videoio \
+>   -lpthread -ln2cube -ldputils -lhineon \
+>   deploy/dpu_yolo.elf -o ug1334.elf
 ```
 
 ***
