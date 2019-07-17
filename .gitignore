@@ -15,4 +15,6 @@ doc
 BOOT*.BIN
 BOOT*.bin
 
-*.elf
+**.elf
+**.dsa
+**.hdf
