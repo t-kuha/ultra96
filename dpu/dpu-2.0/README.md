@@ -1,4 +1,4 @@
-# DPU (v1.4) Integration
+# DPU (v2.0) Integration
 
 ## Prerequisite
 
@@ -40,7 +40,7 @@ $ vivado -mode batch -source create_vivado_project.tcl
 - Create project (usually can be skipped to "petalinux-build")
 
 ```shell-session
-$ export PRJ_NAME=prj
+$ export PRJ_NAME=petalinux
 $ petalinux-create -t project -n ${PRJ_NAME} --template zynqMP
 $ petalinux-config -p ${PRJ_NAME} --get-hw-description=.
 
@@ -52,6 +52,17 @@ $ petalinux-config -p ${PRJ_NAME} -c u-boot
 
 # rootfs config
 $ petalinux-config -p ${PRJ_NAME} -c rootfs
+$ cp -R src/dpu/* prj/project-spec/meta-user/recipes-modules/dpu/
+
+＃ Add DNNDK files
+$ petalinux-create -p ${PRJ_NAME} -t apps --template install --name dnndk --enable
+$ rm prj/project-spec/meta-user/recipes-apps/dnndk/files/dnndk
+$ cp -R src/pkgs/bin prj/project-spec/meta-user/recipes-apps/dnndk/files/
+$ cp -R src/pkgs/lib prj/project-spec/meta-user/recipes-apps/dnndk/files/
+
+# Add DPU driver (Kernel module)
+$ petalinux-create -p ${PRJ_NAME} -t modules --name dpu --enable
+$ cp -R src/dpu/* prj/project-spec/meta-user/recipes-modules/dpu/
 
 # Build
 $ petalinux-build -p ${PRJ_NAME}
@@ -71,9 +82,31 @@ $ petalinux-package -p ${PRJ_NAME} --boot --format BIN \
 --atf ${PRJ_NAME}/images/linux/bl31.elf
 ```
 
+- Or...
+
+```shell-session
+$ petalinux-package -p ${PRJ_NAME} --boot --format BIN \
+--fsbl ${PRJ_NAME}/images/linux/zynqmp_fsbl.elf \
+--u-boot ${PRJ_NAME}/images/linux/u-boot.elf \
+--pmufw ${PRJ_NAME}/images/linux/pmufw.elf \
+--fpga ${PRJ_NAME}/components/plnx_workspace/device-tree/device-tree/u96_dpu_wrapper.bit \
+--atf ${PRJ_NAME}/images/linux/bl31.elf
+```
+
 ***
 
 ## Reference
 
 - [DPU for Convolutional Neural Network v2.0 - DPU IP Product Guide](https://www.xilinx.com/support/documentation/ip_documentation/dpu/v2_0/pg338-dpu.pdf)
 - [Device trees of DPU](https://forums.xilinx.com/t5/Deephi-DNNDK/Device-trees-of-DPU/m-p/953420)
+
+
+- Clocking
+  - "There are three input clocks for the DPU in which the frequency of the dpu_2x_clk should be two times the m_axi_dpu_aclk and the two clocks must be synchronous to meet the timing closure."
+  - "Note that the parameter of the Primitive must be set to Auto."
+  - "Select the Matched Routing for the m_axi_dpu_aclk and dpu_2x_clk in the Output Clocks tab of the Clock Wizard IP. "
+
+- Reset
+  - ""
+- Register Address
+  - "DPU base address must be set to 0x8F00_0000 with a range of 16 MB in MPSoC series."
