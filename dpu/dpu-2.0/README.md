@@ -50,7 +50,7 @@ $ vivado -mode batch -source create_vivado_project.tcl
 - Create project (usually can be skipped to "petalinux-build")
 
 ```shell-session
-$ export PRJ_NAME=petalinux
+$ export PRJ_NAME=prj
 $ petalinux-create -t project -n ${PRJ_NAME} --template zynqMP
 $ petalinux-config -p ${PRJ_NAME} --get-hw-description=.
 
@@ -110,13 +110,13 @@ $ petalinux-package -p ${PRJ_NAME} --boot --format BIN \
 - [DPU for Convolutional Neural Network v2.0 - DPU IP Product Guide](https://www.xilinx.com/support/documentation/ip_documentation/dpu/v2_0/pg338-dpu.pdf)
 - [Device trees of DPU](https://forums.xilinx.com/t5/Deephi-DNNDK/Device-trees-of-DPU/m-p/953420)
 
-
 - Clocking
   - "There are three input clocks for the DPU in which the frequency of the dpu_2x_clk should be two times the m_axi_dpu_aclk and the two clocks must be synchronous to meet the timing closure."
   - "Note that the parameter of the Primitive must be set to Auto."
   - "Select the Matched Routing for the m_axi_dpu_aclk and dpu_2x_clk in the Output Clocks tab of the Clock Wizard IP. "
 
 - Reset
-  - ""
+  - "You must guarantee each pair of clocks and resets is generated in a synchronous clock domain. ... A recommended solution is to instantiate a Processor System Reset IP to generate a matched reset for each clock."
+
 - Register Address
   - "DPU base address must be set to 0x8F00_0000 with a range of 16 MB in MPSoC series."
