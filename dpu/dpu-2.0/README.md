@@ -15,6 +15,11 @@
 $ unzip zcu102-dpu-trd-2018-2-190531.zip
 $ cp -R zcu102-dpu-trd-2018-2-190531/pl/srcs/dpu_ip src
 
+# Kernel module
+$ cd zcu102-dpu-trd-2018-2-190531/apu/dpu_petalinux_bsp
+$ petalinux-create -t project -s xilinx-dpu-trd-zcu102-v2018.2.bsp
+$ cp -R zcu102-dpu-trd-2018-2/project-spec/meta-user/recipes-modules/dpu ../../../src
+
 # Library
 $ tar xf xlnx_dnndk_v3.0_190624.tar.gz
 $ cd xlnx_dnndk_v3.0_190624
@@ -32,6 +37,11 @@ $ cp -R xilinx_dnndk_v3.0/Ultra96/pkgs src
 ```shell-session
 $ vivado -mode batch -source create_vivado_project.tcl
 ```
+
+- About interrupt:
+  - "If DPU is integrated in MPSoC and working with the DNNDK package, you should connect the dpu_interrupt at the bit 10 in the irq signal of PS."
+  - "If the option of softmax in DPU is set as enable, then the interrupt of softmax should connect at the bit 14 in the irq signal of PS when DPU is working with the DNNDK package."
+  - "irq15~irq8 corresponds to pl_ps_irq1[7:0]."
 
 ***
 
