@@ -4,7 +4,7 @@
   
 ## Contents of this repo
 
-- dpu: DPU (Deep Learning Processing Unit) exapmle
+- dpu: DPU (Deep Learning Processing Unit) example
 
 - led_blink: Basic baremetal application project (Blinks PS LED)
 
