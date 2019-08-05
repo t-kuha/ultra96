@@ -98,7 +98,7 @@ output node(s)  : dense_1_MatMul(0)
 ## Build .elf
 
 ```shell-session
-$ aarch64-linux-gnu-g++ src/main.cc \
+$ aarch64-linux-gnu-g++ src/main.cpp \
 >    -Wall -O3 \
 >    --sysroot=/opt/petalinux/2018.2/sysroots/aarch64-xilinx-linux \
 >    -I../../../dnndk/xlnx_dnndk_v3.0_190624/xilinx_dnndk_v3.0/Ultra96/pkgs/include \
