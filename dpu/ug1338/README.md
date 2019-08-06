@@ -1,5 +1,8 @@
 # UG1338
 
+- DPU: v2.0
+- DNNDK: v3.0 (20190624)
+- Vivado: 2018.3
 - CPU only (No GPU is used)
 
 ## Evaluate frozen graph
@@ -87,8 +90,10 @@ FINISHED!
 
 ## Compile
 
+- The dnnc-dpu1.4.0 is for DPU with low RAM Usage and the dnnc-dpu1.4.0.1 is for DPU with high RAM Usage.
+
 ```shell-session
-dnnc \
+dnnc-dpu1.4.0 \
     --parser=tensorflow \
     --frozen_pb=./quantize_results/deploy_model.pb \
     --dpu=2304FA \
