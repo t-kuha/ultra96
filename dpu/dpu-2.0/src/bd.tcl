@@ -199,39 +199,39 @@ proc create_root_design { parentCell } {
   # Create instance: axi_smc, and set properties
   set axi_smc [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 axi_smc ]
   set_property -dict [ list \
+   CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {1} \
  ] $axi_smc
 
-  # Create instance: clk_wiz, and set properties
-  set clk_wiz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz ]
+  # Create instance: axi_smc_1, and set properties
+  set axi_smc_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 axi_smc_1 ]
   set_property -dict [ list \
-   CONFIG.CLKOUT1_JITTER {97.082} \
+   CONFIG.NUM_SI {1} \
+ ] $axi_smc_1
+
+  # Create instance: clk_wiz_0, and set properties
+  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
+  set_property -dict [ list \
+   CONFIG.CLKOUT1_JITTER {83.768} \
    CONFIG.CLKOUT1_MATCHED_ROUTING {true} \
-   CONFIG.CLKOUT1_PHASE_ERROR {98.575} \
-   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {500.000} \
-   CONFIG.CLKOUT2_JITTER {110.209} \
+   CONFIG.CLKOUT1_PHASE_ERROR {87.180} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {600} \
+   CONFIG.CLKOUT2_JITTER {94.862} \
    CONFIG.CLKOUT2_MATCHED_ROUTING {true} \
-   CONFIG.CLKOUT2_PHASE_ERROR {98.575} \
-   CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {250.000} \
+   CONFIG.CLKOUT2_PHASE_ERROR {87.180} \
+   CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {300} \
    CONFIG.CLKOUT2_USED {true} \
-   CONFIG.CLKOUT3_JITTER {130.958} \
-   CONFIG.CLKOUT3_PHASE_ERROR {98.575} \
-   CONFIG.CLKOUT3_USED {true} \
-   CONFIG.CLK_OUT1_PORT {clk_dsp} \
-   CONFIG.CLK_OUT2_PORT {clk_dpu} \
-   CONFIG.CLK_OUT3_PORT {clk_axi} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {10.000} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {12.000} \
    CONFIG.MMCM_CLKOUT0_DIVIDE_F {2.000} \
    CONFIG.MMCM_CLKOUT1_DIVIDE {4} \
-   CONFIG.MMCM_CLKOUT2_DIVIDE {10} \
    CONFIG.MMCM_DIVCLK_DIVIDE {1} \
-   CONFIG.NUM_OUT_CLKS {3} \
+   CONFIG.NUM_OUT_CLKS {2} \
    CONFIG.RESET_PORT {resetn} \
    CONFIG.RESET_TYPE {ACTIVE_LOW} \
- ] $clk_wiz
+ ] $clk_wiz_0
 
-  # Create instance: dpu_eu_0, and set properties
-  set dpu_eu_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:dpu_eu:2.0 dpu_eu_0 ]
+  # Create instance: dpu_eu, and set properties
+  set dpu_eu [ create_bd_cell -type ip -vlnv xilinx.com:ip:dpu_eu:2.0 dpu_eu ]
   set_property -dict [ list \
    CONFIG.ARCH {2304} \
    CONFIG.BANK_IMG_N {16} \
@@ -244,29 +244,28 @@ proc create_root_design { parentCell } {
    CONFIG.PP {8} \
    CONFIG.SFM_ENA {1} \
    CONFIG.SFM_IRQ_SUM {9} \
-   CONFIG.S_AXI_CLK_INDEPENDENT {1} \
    CONFIG.URAM_N {0.0} \
-   CONFIG.VER_TIME_DAY {7} \
-   CONFIG.VER_TIME_HOUR {10} \
-   CONFIG.VER_TIME_MONTH {7} \
-   CONFIG.VER_TIME_QUARTER {2} \
+   CONFIG.VER_TIME_DAY {6} \
+   CONFIG.VER_TIME_HOUR {11} \
+   CONFIG.VER_TIME_MONTH {8} \
+   CONFIG.VER_TIME_QUARTER {3} \
    CONFIG.VER_TIME_YEAR {19} \
- ] $dpu_eu_0
+ ] $dpu_eu
 
-  # Create instance: ps_rst, and set properties
-  set ps_rst [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 ps_rst ]
+  # Create instance: ps_rst_0, and set properties
+  set ps_rst_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 ps_rst_0 ]
 
-  # Create instance: ps_rst_dpu, and set properties
-  set ps_rst_dpu [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 ps_rst_dpu ]
+  # Create instance: ps_rst_1, and set properties
+  set ps_rst_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 ps_rst_1 ]
 
-  # Create instance: ps_rst_dsp, and set properties
-  set ps_rst_dsp [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 ps_rst_dsp ]
+  # Create instance: ps_rst_2, and set properties
+  set ps_rst_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 ps_rst_2 ]
 
   # Create instance: xlconcat_0, and set properties
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
 
-  # Create instance: zynq_ultra_ps_e_0, and set properties
-  set zynq_ultra_ps_e_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e:3.2 zynq_ultra_ps_e_0 ]
+  # Create instance: zynq_us, and set properties
+  set zynq_us [ create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e:3.2 zynq_us ]
   set_property -dict [ list \
    CONFIG.PSU_BANK_0_IO_STANDARD {LVCMOS18} \
    CONFIG.PSU_BANK_1_IO_STANDARD {LVCMOS18} \
@@ -402,7 +401,6 @@ proc create_root_design { parentCell } {
    CONFIG.PSU_SD1_INTERNAL_BUS_WIDTH {4} \
    CONFIG.PSU__ACT_DDR_FREQ_MHZ {533.333313} \
    CONFIG.PSU__AFI0_COHERENCY {0} \
-   CONFIG.PSU__AFI1_COHERENCY {0} \
    CONFIG.PSU__CAN1__GRP_CLK__ENABLE {0} \
    CONFIG.PSU__CAN1__PERIPHERAL__ENABLE {0} \
    CONFIG.PSU__CRF_APB__ACPU_CTRL__ACT_FREQMHZ {1200.000000} \
@@ -613,7 +611,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRL_APB__USB3_DUAL_REF_CTRL__SRCSEL {IOPLL} \
    CONFIG.PSU__CRL_APB__USB3__ENABLE {1} \
    CONFIG.PSU__CSUPMU__PERIPHERAL__VALID {1} \
-   CONFIG.PSU__DDRC__ADDR_MIRROR {0} \
+   CONFIG.PSU__DDRC__ADDR_MIRROR {1} \
    CONFIG.PSU__DDRC__AL {0} \
    CONFIG.PSU__DDRC__BANK_ADDR_COUNT {3} \
    CONFIG.PSU__DDRC__BG_ADDR_COUNT {NA} \
@@ -662,7 +660,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__DDRC__ENABLE_LP4_SLOWBOOT {0} \
    CONFIG.PSU__DDRC__FGRM {NA} \
    CONFIG.PSU__DDRC__LPDDR3_T_REF_RANGE {NA} \
-   CONFIG.PSU__DDRC__LPDDR4_T_REF_RANGE {NA} \
+   CONFIG.PSU__DDRC__LPDDR4_T_REF_RANGE {Normal (0-85)} \
    CONFIG.PSU__DDRC__LP_ASR {NA} \
    CONFIG.PSU__DDRC__MEMORY_TYPE {LPDDR 4} \
    CONFIG.PSU__DDRC__PARITY_ENABLE {NA} \
@@ -803,11 +801,9 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__SATA__LANE1__ENABLE {0} \
    CONFIG.PSU__SATA__PERIPHERAL__ENABLE {0} \
    CONFIG.PSU__SAXIGP0__DATA_WIDTH {128} \
-   CONFIG.PSU__SAXIGP1__DATA_WIDTH {128} \
    CONFIG.PSU__SAXIGP2__DATA_WIDTH {128} \
    CONFIG.PSU__SAXIGP3__DATA_WIDTH {128} \
-   CONFIG.PSU__SAXIGP4__DATA_WIDTH {128} \
-   CONFIG.PSU__SAXIGP5__DATA_WIDTH {128} \
+   CONFIG.PSU__SAXIGP4__DATA_WIDTH {32} \
    CONFIG.PSU__SD0_COHERENCY {0} \
    CONFIG.PSU__SD0__DATA_TRANSFER_MODE {4Bit} \
    CONFIG.PSU__SD0__GRP_CD__ENABLE {1} \
@@ -893,44 +889,44 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__USE__M_AXI_GP1 {0} \
    CONFIG.PSU__USE__M_AXI_GP2 {1} \
    CONFIG.PSU__USE__S_AXI_GP0 {1} \
-   CONFIG.PSU__USE__S_AXI_GP1 {0} \
    CONFIG.PSU__USE__S_AXI_GP2 {1} \
    CONFIG.PSU__USE__S_AXI_GP3 {1} \
    CONFIG.PSU__USE__S_AXI_GP4 {1} \
-   CONFIG.PSU__USE__S_AXI_GP5 {0} \
    CONFIG.SUBPRESET1 {Custom} \
- ] $zynq_ultra_ps_e_0
+ ] $zynq_us
 
   # Create interface connections
-  connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins zynq_ultra_ps_e_0/S_AXI_HP0_FPD]
-  connect_bd_intf_net -intf_net dpu_eu_0_DPU0_M_AXI_DATA0 [get_bd_intf_pins dpu_eu_0/DPU0_M_AXI_DATA0] [get_bd_intf_pins zynq_ultra_ps_e_0/S_AXI_HP1_FPD]
-  connect_bd_intf_net -intf_net dpu_eu_0_DPU0_M_AXI_DATA1 [get_bd_intf_pins dpu_eu_0/DPU0_M_AXI_DATA1] [get_bd_intf_pins zynq_ultra_ps_e_0/S_AXI_HP2_FPD]
-  connect_bd_intf_net -intf_net dpu_eu_0_DPU0_M_AXI_INSTR [get_bd_intf_pins axi_smc/S00_AXI] [get_bd_intf_pins dpu_eu_0/DPU0_M_AXI_INSTR]
-  connect_bd_intf_net -intf_net dpu_eu_0_SFM_M_AXI [get_bd_intf_pins dpu_eu_0/SFM_M_AXI] [get_bd_intf_pins zynq_ultra_ps_e_0/S_AXI_HPC0_FPD]
-  connect_bd_intf_net -intf_net zynq_ultra_ps_e_0_M_AXI_HPM0_LPD [get_bd_intf_pins dpu_eu_0/S_AXI] [get_bd_intf_pins zynq_ultra_ps_e_0/M_AXI_HPM0_LPD]
+  connect_bd_intf_net -intf_net axi_smc_1_M00_AXI [get_bd_intf_pins axi_smc_1/M00_AXI] [get_bd_intf_pins zynq_us/S_AXI_HPC0_FPD]
+  connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins dpu_eu/S_AXI]
+  connect_bd_intf_net -intf_net dpu_eu_0_DPU0_M_AXI_DATA0 [get_bd_intf_pins dpu_eu/DPU0_M_AXI_DATA0] [get_bd_intf_pins zynq_us/S_AXI_HP0_FPD]
+  connect_bd_intf_net -intf_net dpu_eu_0_DPU0_M_AXI_DATA1 [get_bd_intf_pins dpu_eu/DPU0_M_AXI_DATA1] [get_bd_intf_pins zynq_us/S_AXI_HP1_FPD]
+  connect_bd_intf_net -intf_net dpu_eu_0_DPU0_M_AXI_INSTR [get_bd_intf_pins dpu_eu/DPU0_M_AXI_INSTR] [get_bd_intf_pins zynq_us/S_AXI_HP2_FPD]
+  connect_bd_intf_net -intf_net dpu_eu_SFM_M_AXI [get_bd_intf_pins axi_smc_1/S00_AXI] [get_bd_intf_pins dpu_eu/SFM_M_AXI]
+  connect_bd_intf_net -intf_net zynq_ultra_ps_e_0_M_AXI_HPM0_LPD [get_bd_intf_pins axi_smc/S00_AXI] [get_bd_intf_pins zynq_us/M_AXI_HPM0_LPD]
 
   # Create port connections
-  connect_bd_net -net Net [get_bd_pins clk_wiz/resetn] [get_bd_pins dpu_eu_0/s_axi_aresetn] [get_bd_pins ps_rst/peripheral_aresetn] [get_bd_pins ps_rst_dpu/ext_reset_in] [get_bd_pins ps_rst_dsp/ext_reset_in]
-  connect_bd_net -net clk_wiz_0_clk_dpu [get_bd_pins axi_smc/aclk] [get_bd_pins clk_wiz/clk_dpu] [get_bd_pins dpu_eu_0/m_axi_dpu_aclk] [get_bd_pins ps_rst_dpu/slowest_sync_clk] [get_bd_pins zynq_ultra_ps_e_0/saxihp0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/saxihp1_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/saxihp2_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/saxihpc0_fpd_aclk]
-  connect_bd_net -net clk_wiz_0_clk_dsp [get_bd_pins clk_wiz/clk_dsp] [get_bd_pins dpu_eu_0/dpu_2x_clk] [get_bd_pins ps_rst_dsp/slowest_sync_clk]
-  connect_bd_net -net dpu_eu_0_dpu_interrupt [get_bd_pins dpu_eu_0/dpu_interrupt] [get_bd_pins xlconcat_0/In0]
-  connect_bd_net -net dpu_eu_0_sfm_interrupt [get_bd_pins dpu_eu_0/sfm_interrupt] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net ps_rst_dpu_peripheral_aresetn [get_bd_pins axi_smc/aresetn] [get_bd_pins dpu_eu_0/m_axi_dpu_aresetn] [get_bd_pins ps_rst_dpu/peripheral_aresetn]
-  connect_bd_net -net ps_rst_dsp_peripheral_aresetn [get_bd_pins dpu_eu_0/dpu_2x_resetn] [get_bd_pins ps_rst_dsp/peripheral_aresetn]
-  connect_bd_net -net xlconcat_0_dout [get_bd_pins xlconcat_0/dout] [get_bd_pins zynq_ultra_ps_e_0/pl_ps_irq0]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins clk_wiz/clk_in1] [get_bd_pins dpu_eu_0/s_axi_aclk] [get_bd_pins ps_rst/slowest_sync_clk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_lpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins ps_rst/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
+  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins dpu_eu/dpu_2x_clk] [get_bd_pins ps_rst_1/slowest_sync_clk]
+  connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins axi_smc_1/aclk] [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins dpu_eu/m_axi_dpu_aclk] [get_bd_pins ps_rst_2/slowest_sync_clk] [get_bd_pins zynq_us/saxihp0_fpd_aclk] [get_bd_pins zynq_us/saxihp1_fpd_aclk] [get_bd_pins zynq_us/saxihp2_fpd_aclk] [get_bd_pins zynq_us/saxihpc0_fpd_aclk]
+  connect_bd_net -net clk_wiz_0_locked [get_bd_pins clk_wiz_0/locked] [get_bd_pins ps_rst_1/dcm_locked] [get_bd_pins ps_rst_2/dcm_locked]
+  connect_bd_net -net dpu_eu_dpu_interrupt [get_bd_pins dpu_eu/dpu_interrupt] [get_bd_pins xlconcat_0/In0]
+  connect_bd_net -net dpu_eu_sfm_interrupt [get_bd_pins dpu_eu/sfm_interrupt] [get_bd_pins xlconcat_0/In1]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axi_smc/aresetn] [get_bd_pins clk_wiz_0/resetn] [get_bd_pins dpu_eu/s_axi_aresetn] [get_bd_pins ps_rst_0/peripheral_aresetn] [get_bd_pins ps_rst_1/ext_reset_in] [get_bd_pins ps_rst_2/ext_reset_in]
+  connect_bd_net -net proc_sys_reset_1_peripheral_aresetn [get_bd_pins dpu_eu/dpu_2x_resetn] [get_bd_pins ps_rst_1/peripheral_aresetn]
+  connect_bd_net -net proc_sys_reset_2_peripheral_aresetn [get_bd_pins axi_smc_1/aresetn] [get_bd_pins dpu_eu/m_axi_dpu_aresetn] [get_bd_pins ps_rst_2/peripheral_aresetn]
+  connect_bd_net -net xlconcat_0_dout [get_bd_pins xlconcat_0/dout] [get_bd_pins zynq_us/pl_ps_irq0]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins axi_smc/aclk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins dpu_eu/s_axi_aclk] [get_bd_pins ps_rst_0/slowest_sync_clk] [get_bd_pins zynq_us/maxihpm0_lpd_aclk] [get_bd_pins zynq_us/pl_clk0]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins ps_rst_0/ext_reset_in] [get_bd_pins zynq_us/pl_resetn0]
 
   # Create address segments
-  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu_0/DPU0_M_AXI_INSTR] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_LOW] SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW
-  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu_0/DPU0_M_AXI_INSTR] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP2/HP0_LPS_OCM] SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM
-  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu_0/DPU0_M_AXI_DATA0] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP3/HP1_DDR_LOW] SEG_zynq_ultra_ps_e_0_HP1_DDR_LOW
-  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu_0/DPU0_M_AXI_DATA0] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP3/HP1_LPS_OCM] SEG_zynq_ultra_ps_e_0_HP1_LPS_OCM
-  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu_0/DPU0_M_AXI_DATA1] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP4/HP2_DDR_LOW] SEG_zynq_ultra_ps_e_0_HP2_DDR_LOW
-  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu_0/DPU0_M_AXI_DATA1] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP4/HP2_LPS_OCM] SEG_zynq_ultra_ps_e_0_HP2_LPS_OCM
-  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu_0/SFM_M_AXI] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP0/HPC0_DDR_LOW] SEG_zynq_ultra_ps_e_0_HPC0_DDR_LOW
-  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu_0/SFM_M_AXI] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP0/HPC0_LPS_OCM] SEG_zynq_ultra_ps_e_0_HPC0_LPS_OCM
-  create_bd_addr_seg -range 0x01000000 -offset 0x8F000000 [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs dpu_eu_0/S_AXI/reg0] SEG_dpu_eu_0_reg0
+  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu/DPU0_M_AXI_DATA0] [get_bd_addr_segs zynq_us/SAXIGP2/HP0_DDR_LOW] SEG_zynq_ultra_ps_e_0_HP0_DDR_LOW
+  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu/DPU0_M_AXI_DATA0] [get_bd_addr_segs zynq_us/SAXIGP2/HP0_LPS_OCM] SEG_zynq_ultra_ps_e_0_HP0_LPS_OCM
+  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu/DPU0_M_AXI_DATA1] [get_bd_addr_segs zynq_us/SAXIGP3/HP1_DDR_LOW] SEG_zynq_ultra_ps_e_0_HP1_DDR_LOW
+  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu/DPU0_M_AXI_DATA1] [get_bd_addr_segs zynq_us/SAXIGP3/HP1_LPS_OCM] SEG_zynq_ultra_ps_e_0_HP1_LPS_OCM
+  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu/DPU0_M_AXI_INSTR] [get_bd_addr_segs zynq_us/SAXIGP4/HP2_DDR_LOW] SEG_zynq_ultra_ps_e_0_HP2_DDR_LOW
+  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu/DPU0_M_AXI_INSTR] [get_bd_addr_segs zynq_us/SAXIGP4/HP2_LPS_OCM] SEG_zynq_ultra_ps_e_0_HP2_LPS_OCM
+  create_bd_addr_seg -range 0x80000000 -offset 0x00000000 [get_bd_addr_spaces dpu_eu/SFM_M_AXI] [get_bd_addr_segs zynq_us/SAXIGP0/HPC0_DDR_LOW] SEG_zynq_us_HPC0_DDR_LOW
+  create_bd_addr_seg -range 0x01000000 -offset 0xFF000000 [get_bd_addr_spaces dpu_eu/SFM_M_AXI] [get_bd_addr_segs zynq_us/SAXIGP0/HPC0_LPS_OCM] SEG_zynq_us_HPC0_LPS_OCM
+  create_bd_addr_seg -range 0x01000000 -offset 0x8F000000 [get_bd_addr_spaces zynq_us/Data] [get_bd_addr_segs dpu_eu/S_AXI/reg0] SEG_dpu_eu_0_reg0
 
 
   # Restore current instance
