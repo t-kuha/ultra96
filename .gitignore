@@ -18,3 +18,7 @@ BOOT*.bin
 **.elf
 **.dsa
 **.hdf
+**.tar.bz2
+**.tar.gz
+**.tar.xz
+**.zip
