@@ -8,7 +8,7 @@
 # Reference: UG1208
 # 
 
-set XSDK_DIR    sdk
+set XSDK_DIR    _sdk
 set PRJ_NAME    u96_base
 set SRC_DIR     src
 
@@ -58,4 +58,4 @@ configapp -app led_blink build-config release
 projects -build
 
 # Generate BOOT.bin
-exec bootgen -arch zynqmp -image ${SRC_DIR}/boot_bin_standalone.bif -w -o BOOT_standalone.bin
+exec bootgen -arch zynqmp -image ${SRC_DIR}/boot_bin_standalone.bif -w -o BOOT.bin
