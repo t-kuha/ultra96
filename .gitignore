@@ -1,13 +1,10 @@
+**.Xil
 **.jou
 **.log
-**.lnk
 
-**vivado
-**sdk
 _*
 
-doc
-**BOOT_BIN
+**.lnk
+**.tar.*
 
-**.Xil
-BOOT*.BIN
+.vscode
