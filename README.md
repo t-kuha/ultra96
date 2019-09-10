@@ -1,6 +1,6 @@
 # ultra96
 
-- Projects for Ultra96 board
+- Projects for Ultra96 (v1) board
   
 ## Contents of this repo
 
