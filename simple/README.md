@@ -29,7 +29,7 @@ $ petalinux-build -p u96_base
 $ ./copy_pfm_files.sh
 
 # Make sure to use xsct in SDx (not the one in SDK)
-$ xsct create_sdsoc_pfm.tcl
+$ ${XILINX_SDX}/bin/xsct create_sdsoc_pfm.tcl
 ```
 
 ### Build pre-built HW
@@ -39,8 +39,10 @@ $ xsct create_sdsoc_pfm.tcl
 ```bash
 $ mkdir _prj_init
 $ cd _prj_init
-$ sdscc ../src/hello_world.c -c -o hello_world.o -sds-pf ../platform_init/u96_base/export/u96_base -sds-sys-config linux -target-os linux
-$ sdscc hello_world.o -o hello_world.elf -sds-pf ../platform_init/u96_base/export/u96_base -sds-sys-config linux -target-os linux
+$ sdscc ../src/hello_world.c -c -o hello_world.o \
+-sds-pf ../platform_init/u96_base/export/u96_base -sds-sys-config linux -target-os linux
+$ sdscc hello_world.o -o hello_world.elf \
+-sds-pf ../platform_init/u96_base/export/u96_base -sds-sys-config linux -target-os linux
 ```
 
 - Copy prebuilt data
@@ -52,7 +54,7 @@ $ ./copy_prebuilt_files.sh
 ### Create final platform (with pre-built HW)
 
 ```bash
-$ xsct create_sdsoc_pfm.tcl
+$ ${XILINX_SDX}/bin/xsct create_sdsoc_pfm.tcl
 ```
 
 ***
@@ -150,7 +152,8 @@ $ petalinux-build -p ${PRJ}
 
 ## Tips
 
-- Console setting must be changed from default (ps_uart_0) to ps_uart_1. To do that, use petalinux-config command.
+- Console setting must be changed from default (ps_uart_0) to ps_uart_1. 
+To do that, use petalinux-config command.
 
 - To use USB ports, ULPI option in Linux Kernel config must be enabled.
 
