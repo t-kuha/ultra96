@@ -64,7 +64,9 @@ $ ${XILINX_SDX}/bin/xsct create_sdsoc_pfm.tcl
 - Build:
 
 ```bash
-$ make OS=LINUX PLATFORM=platform_final/u96_base/export/u96_base PLATFORM_TYPE=MPSOC
+$ cp -R ${XILINX_SDX}/samples/platforms/Conformance/ _conformance
+$ cd _conformance/
+$ make OS=LINUX PLATFORM=../platform_final/u96_base/export/u96_base PLATFORM_TYPE=MPSOC
 ```
 
 - Run:
