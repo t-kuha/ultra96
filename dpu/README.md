@@ -64,7 +64,7 @@ $ petalinux-config -p ${PRJ_NAME} -c u-boot
 # Add opencv & libstdc++
 $ petalinux-config -p ${PRJ_NAME} -c rootfs
 
-＃ Add DNNDK files
+# Add DNNDK files
 $ petalinux-create -p ${PRJ_NAME} -t apps --template install --name dnndk --enable
 $ rm -r prj/project-spec/meta-user/recipes-apps/dnndk/files/*
 $ cp -R src/_pkgs/bin prj/project-spec/meta-user/recipes-apps/dnndk/files/
