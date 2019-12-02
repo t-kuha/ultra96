@@ -66,13 +66,13 @@ $ petalinux-config -p ${PRJ_NAME} -c rootfs
 
 # Add DNNDK files
 $ petalinux-create -p ${PRJ_NAME} -t apps --template install --name dnndk --enable
-$ rm -r prj/project-spec/meta-user/recipes-apps/dnndk/files/*
-$ cp -R src/_pkgs/bin prj/project-spec/meta-user/recipes-apps/dnndk/files/
-$ cp -R src/_pkgs/lib prj/project-spec/meta-user/recipes-apps/dnndk/files/
+$ rm -r ${PRJ_NAME}/project-spec/meta-user/recipes-apps/dnndk/files/*
+$ cp -R src/_pkgs/bin ${PRJ_NAME}/project-spec/meta-user/recipes-apps/dnndk/files/
+$ cp -R src/_pkgs/lib ${PRJ_NAME}/project-spec/meta-user/recipes-apps/dnndk/files/
 
 # Add DPU driver (Kernel module)
 $ petalinux-create -p ${PRJ_NAME} -t modules --name dpu --enable
-$ cp -R src/_driver/* prj/project-spec/meta-user/recipes-modules/dpu/
+$ cp -R src/_driver/* ${PRJ_NAME}/project-spec/meta-user/recipes-modules/dpu/
 
 # Build
 $ petalinux-build -p ${PRJ_NAME}
@@ -108,8 +108,8 @@ $ petalinux-package -p ${PRJ_NAME} --boot --format BIN \
 ## Run
 
 - Copy following files to micro SD card & power up the board
-  - prj/images/linux/image.ub
-  - prj/images/linux/BOOT.BIN
+  - ${PRJ_NAME}/images/linux/image.ub
+  - ${PRJ_NAME}/images/linux/BOOT.BIN
 
 ***
 
